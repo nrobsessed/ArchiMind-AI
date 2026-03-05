@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Montserrat", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-brand-paper: var(--brand-paper);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-secondary: #3b82f6;
+  --color-brand-gold: #d4af37;
+
+  /* Keep these for explicit usage if needed */
+  --color-dark-paper: #050505;
+  --color-dark-ink: #fcfbf9;
+}
+
+:root {
+  --brand-paper: #fcfbf9;
+  --brand-ink: #0a0a0a;
+  --brand-accent: #10b981;
+}
+
+.dark {
+  --brand-paper: #050505;
+  --brand-ink: #fcfbf9;
+  --brand-accent: #34d399;
+}
+
+@layer base {
+  html {
+    @apply transition-colors duration-500;
+  }
+  
+  body {
+    @apply bg-brand-paper text-brand-ink font-sans transition-colors duration-500 selection:bg-brand-accent selection:text-white overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.arch-bg-pattern {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.03;
+  transition: opacity 0.5s ease;
+  background-image: 
+    linear-gradient(color-mix(in srgb, var(--color-brand-accent), transparent 95%) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-brand-accent), transparent 95%) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.dark .arch-bg-pattern {
+  opacity: 0.07;
+  background-image: 
+    linear-gradient(color-mix(in srgb, var(--color-brand-accent), transparent 92%) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-brand-accent), transparent 92%) 1px, transparent 1px);
+}
+
+.fibonacci-spiral {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 80vw;
+  height: 80vw;
+  border: 1px solid currentColor;
+  border-radius: 0 0 0 100%;
+  transform: rotate(0deg);
+}
+
+.golden-circle {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 30vw;
+  height: 30vw;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.geometric-bg {
+  background-image: 
+    linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.dark .geometric-bg {
+  background-image: 
+    linear-gradient(rgba(52, 211, 153, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 211, 153, 0.08) 1px, transparent 1px);
+}
+
+.glass-card {
+  @apply bg-white/80 dark:bg-white/5 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+}
+
+.golden-ratio-grid {
+  display: grid;
+  grid-template-columns: 1.618fr 1fr;
+}
+
+.btn-vibrant {
+  @apply relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95;
+}
+
+.btn-vibrant::after {
+  content: '';
+  @apply absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300;
+}
+
+.btn-vibrant:hover::after {
+  @apply translate-y-0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-ink/10 dark:bg-white/10 rounded-full hover:bg-brand-accent/40 transition-colors;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-white/10 hover:bg-brand-accent/40;
+}
